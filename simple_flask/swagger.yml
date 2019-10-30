@@ -1,0 +1,137 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /people:  
+    get:
+      operationId: "people.read_all"
+      tags:
+        - "People"
+      summary: "The people data structure supported by the server application"
+      description: "Read the list of people"
+      responses:
+        200:
+          description: "Successful read people list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                fname:
+                  type: "string"
+                lname:
+                  type: "string"
+                timestamp:
+                  type: "string"
+    post:
+      operationId: "people.create"
+      tags:
+        - "People"
+      summary: "Create a new person in the people list"
+      description: "Creates a new person and adds them to the people list"
+      parameters:
+        - name: person
+          in: body
+          description: Person to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname: 
+                type: string
+                description: "First name of the Person"
+              lnmae:
+                type: string
+                description: "Last name of the Person"
+      responses:
+        201:
+          description: "Successfully created person in list"
+        406:
+          description: "Person already exists in list"
+  /people/{lname}:  
+    get:
+      operationId: "people.read_one"
+      tags:
+        - "People"
+      summary: "Read one person from the people list"
+      description: "Read one person from people list"
+      parameters:
+        - name: lname
+          in: path
+          description: last name of person
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successful read one person operation"
+          schema:
+            properties:
+              fname:
+                type: "string"
+              lname:
+                type: "string"
+              timestamp:
+                type: "string"
+        404:
+          description: "Unable to find person"
+    delete:
+      operationId: "people.delete"
+      tags:
+        - "People"
+      summary: "Delete one person from the people list"
+      description: "Delete one person from people list"
+      parameters:
+        - name: lname
+          in: path
+          description: last name of person
+          type: string
+          required: True
+      responses:
+        200:
+          description: "Successful deleted one person operation"
+          schema:
+            properties:
+              fname:
+                type: "string"
+              lname:
+                type: "string"
+              timestamp:
+                type: "string"
+        404:
+          description: "Unable to find person"    
+    put:
+      operationId: "people.update"
+      tags:
+        - "People"
+      summary: "Update a person from the list"
+      description: "Update one person from people list"
+      parameters:
+        - name: lname
+          in: path
+          description: last name of person
+          type: string
+          required: True
+        - name: person
+          in: body
+          description: fname and lname of person
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+              lname:
+                type: string
+      responses:
+        200:
+          description: "Successful updated one person operation"
+        404:
+          description: "Unable to find person"
