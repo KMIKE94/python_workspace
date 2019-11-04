@@ -57,7 +57,7 @@ paths:
           description: "Successfully created person in list"
         406:
           description: "Person already exists in list"
-  /people/{lname}:  
+  /people/{person_id}:  
     get:
       operationId: "people.read_one"
       tags:
@@ -65,9 +65,9 @@ paths:
       summary: "Read one person from the people list"
       description: "Read one person from people list"
       parameters:
-        - name: lname
+        - name: person_id
           in: path
-          description: last name of person
+          description: id of the person
           type: string
           required: True
       responses:
@@ -90,7 +90,7 @@ paths:
       summary: "Delete one person from the people list"
       description: "Delete one person from people list"
       parameters:
-        - name: lname
+        - name: person_id
           in: path
           description: last name of person
           type: string
@@ -115,7 +115,7 @@ paths:
       summary: "Update a person from the list"
       description: "Update one person from people list"
       parameters:
-        - name: lname
+        - name: person_id
           in: path
           description: last name of person
           type: string

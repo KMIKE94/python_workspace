@@ -12,6 +12,6 @@ RUN pip install flask
 # includes validation of inputs and outputs
 RUN pip install connexion 
 RUN pip install connexion[swagger-ui] 
-RUN pip install Flask-SQLAlchemy flask-marshmallow marshmallow-sqlalchemy marshmallow
+RUN pip install Flask-SQLAlchemy==2.1 flask-marshmallow marshmallow-sqlalchemy marshmallow
 
 CMD ["python","/tmp/server.py"]

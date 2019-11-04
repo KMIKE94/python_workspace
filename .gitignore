@@ -1,0 +1,9 @@
+# Some folders
+__pycache__
+**/__pycache__
+
+# files
+pythonworkspace.code-workspace
+*.txt
+*.db
+
