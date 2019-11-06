@@ -6,4 +6,5 @@ __pycache__
 pythonworkspace.code-workspace
 *.txt
 *.db
+**/.dockerignore
 
