@@ -2,6 +2,6 @@ FROM python:3.6-alpine
 
 COPY . /tmp/
 
-RUN pip install requests beautifulsoup4
+RUN pip install -r /tmp/requirements.txt
 
 CMD ["python", "/tmp/webscraper.py"]
