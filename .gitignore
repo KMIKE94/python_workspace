@@ -7,4 +7,5 @@ pythonworkspace.code-workspace
 *.txt
 *.db
 **/.dockerignore
+!requirements.txt
 
