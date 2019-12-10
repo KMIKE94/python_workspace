@@ -24,7 +24,10 @@ services:
         - '3306'
         # Where our data will be persisted
       volumes:
-        - my-db:/var/lib/mysql
+        # Connects my-db volume to the location /var/lib/mysql
+        - my-db:/var/lib/mysql:rw
+        # Sends the startup script into a startup location that the docker container will run
+        - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
 # Names our volume
 volumes:
   my-db:

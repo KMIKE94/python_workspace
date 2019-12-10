@@ -1,28 +1,31 @@
+from flask import Flask
 import mysql.connector
+import json
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="user",
-    passwd="password",
-    database="db"
-)
+app = Flask(__name__)
 
-mycursor = mydb.cursor()
+@app.route("/")
+def hello():
+    mydb = mysql.connector.connect(
+        host="127.0.0.1",
+        user="user",
+        password="password",
+        database="db"
+    )
 
-create_stmt = "CREATE TABLE User(emp_id int, name varchar(255))"
-mycursor.execute(create_stmt)
+    mycursor = mydb.cursor()
+    stmt = "SELECT * from Users;"
+    mycursor.execute(stmt)
 
-insert_stmt = "INSERT INTO User (emp_id, name) VALUES (%d, %s)"
-val = [
-    (1, 'Keith'),
-    (2, 'Emma'),
-    (3, 'Yuri'),
-    (4, 'James'),
-    (5, 'Jack'),
-    (6, 'Shane'),
-]
+    myDict = {}
+    for (emp_id, employee_name) in mycursor:
+        print(str(emp_id) + "\t" + employee_name)
+        myDict.update({emp_id:employee_name})  
+    
+    j = json.dumps(myDict)
+    print(j)
+    return j
 
-mycursor.executemany(insert_stmt, val)
-mydb.commit()
 
-print("LastRow: ", mycursor.lastrowid)
+if __name__ == "__main__":
+    app.run()
