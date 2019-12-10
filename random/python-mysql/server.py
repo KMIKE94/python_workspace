@@ -6,8 +6,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    # Replace host with internal docker host ip
+    # docker inspect {NETWORK_ID} | grep Gateway
     mydb = mysql.connector.connect(
-        host="127.0.0.1",
+        host="172.24.0.1",
         user="user",
         password="password",
         database="db"
@@ -28,4 +30,4 @@ def hello():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host='0.0.0.0')

@@ -4,7 +4,9 @@ services:
         # Build from the Dockerfile in the current directory
         build: .
         ports:
-            - "5000:5000"
+          - "5000:5000"
+        networks: 
+          - default
     db:
       image: mysql:5.7
       restart: always
@@ -28,6 +30,8 @@ services:
         - my-db:/var/lib/mysql:rw
         # Sends the startup script into a startup location that the docker container will run
         - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      networks:
+        - default
 # Names our volume
 volumes:
   my-db:
