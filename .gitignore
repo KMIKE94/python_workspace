@@ -8,4 +8,4 @@ pythonworkspace.code-workspace
 *.db
 **/.dockerignore
 !requirements.txt
-
+**/venv/*
