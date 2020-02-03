@@ -9,3 +9,4 @@ pythonworkspace.code-workspace
 **/.dockerignore
 !requirements.txt
 **/venv/*
+**/.DS_Store
